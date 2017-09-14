@@ -1,0 +1,20 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "Test of angularjs directory",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start-dev",
+    "start-dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "nodemon": "^1.12.0"
+  }
+}
