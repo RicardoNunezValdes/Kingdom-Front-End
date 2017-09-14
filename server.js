@@ -7,7 +7,7 @@ var app = express();
 InitializeApp();
 
 // Logger configuration
-// app.use(morgan("combined"));
+app.use(morgan(config.logger));
 
 function InitializeApp()
 {
@@ -26,7 +26,7 @@ function ConfigureExpress()
     };
 
     // Any request to a path without a static file will return the index file
-    app.get("*", (req, res) => res.sendFile("html/index.html", options)); // load the single view file (angular will handle the page changes on the front-end)   
+    app.get("*", (req, res) => res.sendFile("views/index.html", options)); // load the single view file (angular will handle the page changes on the front-end)   
 }
 
 function StartServer()

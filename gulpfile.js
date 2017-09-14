@@ -16,8 +16,11 @@ folder = {
     dist: "dist/"
 };
 
-gulp.task("default", ["clean", "build-html", "build-js", "watch"]);
-gulp.task("clean", ["clean-dist"]);
+gulp.task("default", ["clean-dist", "watch"], function()
+{
+    gulp.start("build");
+});
+gulp.task("build", ["build-html", "build-js"]);
 gulp.task("build-html", BuildHtml);
 gulp.task("build-js", BuildJs);
 gulp.task("clean-dist", () => del(["dist/"]));
@@ -44,7 +47,7 @@ function BuildJs()
 
 function BuildHtml()
 {
-    var out = folder.dist + "html/";
+    var out = folder.dist + "views/";
     var srcFilesPattern = folder.src + "/**/*.html";
     
     var htmlBuild = gulp.src(srcFilesPattern)

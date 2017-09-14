@@ -8,15 +8,14 @@
 
     function BanksController($scope, BankService, Bank)
     {
-        console.log(BankService);
-        console.log(BankService);
-        console.log(new Bank());
+        $scope.AddBank = AddBank;
+        $scope.AddBank = AddBank;
         $scope.AddBank = AddBank;
         $scope.bankName = "";
 
         $scope.banks = [
         {
-            name: "Banco de Chile"
+            name: "Banco de Chilesssss"
         },
         {
             name: "Banco Scotiabank"
