@@ -9,7 +9,7 @@
     {
         return function()
         {
-            this.BankName = "";
+            this.BankName = "sAA";
         };
     }
 }());

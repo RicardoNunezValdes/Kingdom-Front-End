@@ -1,58 +1,65 @@
 // Gulp.js configuration
-var gulp = require("gulp"),
-    newer = require("gulp-newer"),
-    htmlclean = require("gulp-htmlclean"),
-    concat = require("gulp-concat"),
-    stripdebug = require("gulp-strip-debug"),
-    uglify = require("gulp-uglify"),
-    angularOrder = require("gulp-angular-order");
-
-    // development mode?
-    devBuild = (process.env.NODE_ENV !== "production");
-// set NODE_ENV=production
+var gulp = require("gulp");
+var newer = require("gulp-newer");
+var htmlclean = require("gulp-htmlclean");
+var concat = require("gulp-concat");
+var stripdebug = require("gulp-strip-debug");
+var uglify = require("gulp-uglify");
+var angularOrder = require("gulp-angular-order");
+var config = require("./src/conf/config");
+var livereload = require("gulp-livereload");
+var del = require("del");
 
 // folders
 folder = {
     src: "src/app",
-    build: "build/"
+    dist: "dist/"
 };
 
-gulp.task("default", ["html", "js"]);
+gulp.task("default", ["clean", "build-html", "build-js", "watch"]);
+gulp.task("clean", ["clean-dist"]);
+gulp.task("build-html", BuildHtml);
+gulp.task("build-js", BuildJs);
+gulp.task("clean-dist", () => del(["dist/"]));
 
-// HTML processing
-gulp.task("html", function()
+function BuildJs()
 {
-    var out = folder.build + "html/";
-    var page = gulp.src(folder.src + "/**/*.html")
-        .pipe(newer(out));
+    var orderConfiguration = { types: ["module", "model", "service", "controller", "directive", "filter", "routes", "config"] };
+    var destFileName = "app.js";
+    var srcFilesPattern = folder.src + "/**/*.js";
+    var destination = folder.dist + "js/";
 
-    if (!devBuild)
-        console.log("devbuild");
-    else
-        console.log("devbuild2");
+    var jsbuild = gulp.src(srcFilesPattern)
+                      .pipe(newer(destination))
+                      .pipe(angularOrder(orderConfiguration))
+                      .pipe(concat(destFileName));
+
+    if (config.minifyFiles)
+        jsbuild = jsbuild.pipe(stripdebug())
+                         .pipe(uglify());
+
+    return jsbuild.pipe(gulp.dest(destination))
+                  .pipe(livereload());
+}
+
+function BuildHtml()
+{
+    var out = folder.dist + "html/";
+    var srcFilesPattern = folder.src + "/**/*.html";
     
-    // minify production code
-    // if (!devBuild)
-        // page = page.pipe(htmlclean());
+    var htmlBuild = gulp.src(srcFilesPattern)
+                        .pipe(newer(out)); 
 
-    return page.pipe(gulp.dest(out));
-});
+    if (config.minifyFiles)
+        htmlBuild = htmlBuild.pipe(htmlclean());
 
-// JavaScript processing
-gulp.task("js", function()
+    return htmlBuild.pipe(gulp.dest(out))
+                    .pipe(livereload());
+}
+
+gulp.task("watch", function() 
 {
-    var types = ['module', 'model', 'service', 'controller', 'directive', 'filter', 'routes', 'config'];
-
-    var jsbuild = gulp.src(folder.src + "/**/*.js")
-        .pipe(angularOrder({ types: types }))
-        .pipe(concat("app.js"));
-
-    // if (!devBuild)
-    // {
-    // jsbuild = jsbuild
-    //     .pipe(stripdebug())
-    //     .pipe(uglify());
-    // }
-
-    return jsbuild.pipe(gulp.dest(folder.build + "js/"));
+    livereload.listen({ start: true });
+    gulp.watch(folder.src + "/**/*.html", ["build-html"]);
+    gulp.watch(folder.src + "/**/*.js", ["build-js"]);
 });

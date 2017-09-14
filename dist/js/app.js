@@ -14,7 +14,7 @@
     {
         return function()
         {
-            this.BankName = "";
+            this.BankName = "sAA";
         };
     }
 }());
@@ -53,6 +53,7 @@
 
     function BanksController($scope, BankService, Bank)
     {
+        console.log(BankService);
         console.log(BankService);
         console.log(new Bank());
         $scope.AddBank = AddBank;
