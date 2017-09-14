@@ -4,7 +4,7 @@
 
     angular
         .module("MainApp")
-        .controller("MainCtrl", ["$scope", MainController])
+        .controller("MainCtrl", ["$scope", MainController]);
 
     function MainController($scope)
     {

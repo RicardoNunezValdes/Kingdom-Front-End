@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module("BankApp")
+        .module("BanksApp")
         .service("BankService", ["$http", "endpoints", BankService])
 
     function BankService($http, endpoints)
