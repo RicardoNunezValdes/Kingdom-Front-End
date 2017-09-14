@@ -4,10 +4,12 @@
 
     angular
         .module("BanksApp")
-        .controller("BanksCtrl", ["$scope", "BankService", BanksController])
+        .controller("BanksCtrl", ["$scope", "BankService", "Bank", BanksController])
 
-    function BanksController($scope, BankService)
+    function BanksController($scope, BankService, Bank)
     {
+        console.log(BankService);
+        console.log(new Bank());
         $scope.AddBank = AddBank;
         $scope.bankName = "";
 

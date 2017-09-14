@@ -3,10 +3,8 @@ var gulp = require("gulp"),
     newer = require("gulp-newer"),
     htmlclean = require("gulp-htmlclean"),
     concat = require("gulp-concat"),
-    // deporder = require("gulp-deporder"),
     stripdebug = require("gulp-strip-debug"),
     uglify = require("gulp-uglify"),
-    deporder = require("gulp-ng-deporder")
     angularOrder = require("gulp-angular-order");
 
     // development mode?
@@ -43,7 +41,7 @@ gulp.task("html", function()
 // JavaScript processing
 gulp.task("js", function()
 {
-    var types = ['module', 'service', 'controller', 'directive', 'filter', 'routes', 'config'];
+    var types = ['module', 'model', 'service', 'controller', 'directive', 'filter', 'routes', 'config'];
 
     var jsbuild = gulp.src(folder.src + "/**/*.js")
         .pipe(angularOrder({ types: types }))
@@ -57,5 +55,4 @@ gulp.task("js", function()
     // }
 
     return jsbuild.pipe(gulp.dest(folder.build + "js/"));
-
 });

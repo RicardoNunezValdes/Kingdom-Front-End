@@ -8,23 +8,38 @@
 
     angular
         .module("BanksApp")
-        .service("BankService", ["$http", "endpoints", BankService])
+        .factory("Bank", [BankModel])
 
-    function BankService($http, endpoints)
+    function BankModel()
     {
-        // this.endpoints =
-        // {
-        //     administration:{
-        //         banks: {
-        //             uri: "admin/banks",
-        //             resource: "admin/banks/{bankId}"
-        //         }
-        //     }   
-        // };
+        return function()
+        {
+            this.BankName = "";
+        };
+    }
+}());
+(function(){
+    "use strict";
+
+    angular
+        .module("BanksApp")
+        .service("BankService", ["$http", BankService])
+
+    function BankService($http)
+    {
+        this.endpoints =
+        {
+            administration:{
+                banks: {
+                    uri: "admin/banks",
+                    resource: "admin/banks/{bankId}"
+                }
+            }   
+        };
 
         this.Get = function()
         {
-            return $http.get(endpoints.banks.uri);
+            return $http.get(endpoints.administration.banks.uri);
         };
     }
 }());
@@ -34,10 +49,12 @@
 
     angular
         .module("BanksApp")
-        .controller("BanksCtrl", ["$scope", "BankService", BanksController])
+        .controller("BanksCtrl", ["$scope", "BankService", "Bank", BanksController])
 
-    function BanksController($scope, BankService)
+    function BanksController($scope, BankService, Bank)
     {
+        console.log(BankService);
+        console.log(new Bank());
         $scope.AddBank = AddBank;
         $scope.bankName = "";
 
@@ -74,18 +91,6 @@
         {
             $scope.banks = response.data;
         }
-    }
-})();
-(function()
-{
-    "use strict";
-
-    angular
-        .module("BanksApp")
-        .controller("Banks.EditorCtrl", ["$scope", "BankService", BanksEditorController])
-
-    function BanksEditorController($scope, BankService)
-    {
     }
 })();
 (function()
