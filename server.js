@@ -20,6 +20,12 @@ function ConfigureExpress()
     // Configure express as static file server
     app.use(express.static("dist"));
 
+    // Also configure it so node modules are available
+    app.use("/scripts", express.static("node_modules"));
+
+    // Add fav icon to express routing
+    app.use("/favicon.ico", express.static("favicon.ico"));
+
     // Configuration for the response handler 
     var options = {
         root: __dirname + "/dist/"
@@ -38,15 +44,4 @@ function StartServer()
 function OnInitServer()
 {
     console.log("Demo server available on http://localhost:" + config.PORT);
-
-    // Configure the browser hot reload by opening a proxy to the actual server
-    // browserSync(
-    // {
-    //     files: ["src/**/*.{html,js,css}"],
-    //     online: false,
-    //     open: false,
-    //     port: config.PORT,
-    //     proxy: "localhost:" + config.PORT,
-    //     ui: false
-    // });
 }

@@ -4,7 +4,7 @@
 
     angular
         .module("BanksApp")
-        .controller("BanksCtrl", ["$scope", "BankService", "Bank", BanksController])
+        .controller("Sales.BanksCtrl", ["$scope", "BankService", "Bank", BanksController])
 
     function BanksController($scope, BankService, Bank)
     {

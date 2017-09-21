@@ -1,0 +1,13 @@
+<div class="row">
+    <h3>Agregar Bancos</h3>
+    <div class="col-md-4">
+        <label>Nombre:</label>
+        <input type="text" ng-model="bankName" placeholder="Bank Name">
+        <button type="button" class="btn btn-primary" ng-click="AddBank()">Agregar</button>
+    </div>
+</div>
+<div class="row">
+    <ul class="list-group col-md-3">
+        <li class="list-group-item" ng-repeat="bank in banks">{{ bank.name }}</li>
+    </ul>
+</div>

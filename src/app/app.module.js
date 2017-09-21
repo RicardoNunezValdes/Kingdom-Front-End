@@ -3,5 +3,5 @@
     "use strict";
 
     angular
-        .module("MainApp", ["BanksApp"]);
+        .module("MainApp", ["AppPlugins", "WelcomeApp", "SalesApp"]);
 })();
