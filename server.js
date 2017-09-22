@@ -20,6 +20,9 @@ function ConfigureExpress()
     // Configure express as static file server
     app.use(express.static("dist"));
 
+    // Configure express as static file server
+    app.use("/static", express.static("static"));
+
     // Also configure it so node modules are available
     app.use("/scripts", express.static("node_modules"));
 

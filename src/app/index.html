@@ -13,6 +13,16 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- animation CSS -->
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <script>
         document.write("<link rel=\"stylesheet\" href=\"/css/app.css?v=" + Date.now() + "\">");
     </script>
@@ -24,14 +34,37 @@
     <script src="/scripts/angular-ui-router/release/angular-ui-router.js"></script>
 </head>
 
-<body ng-controller="MainCtrl">
-    <a ui-sref="welcome">Inicio</a>
+<body ng-controller="MainCtrl" class="fix-sidebar">
+    <div class="preloader" style="display: none;">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <!-- <a ui-sref="welcome">Inicio</a>
     <a ui-sref="sales.banks">Bancos</a>
     <a ui-sref="sales.products">Productos</a>
+    <ui-view></ui-view> -->
     <ui-view></ui-view>
     <script>
         document.write("<script type=\"text/javascript\" src=\"/js/app.js?v=" + Date.now() + "\"><\/script>");
     </script>
+
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+
+    <!--slimscroll JavaScript -->
+    <script src="/static/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/static/js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/js/custom.js"></script>
+    <!--Style Switcher -->
+    <script src="/static/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+    <script src="/static/js/plugins/AdminLTE/app.min.js"></script>
 </body>
 
 </html>

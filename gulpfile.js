@@ -17,10 +17,7 @@ folder = {
     static: "src/static"
 };
 
-gulp.task("default", ["clean-dist", "watch"], function()
-{
-    gulp.start("build");
-});
+gulp.task("default", ["clean-dist", "watch"], () => gulp.start("build"));
 gulp.task("build", ["build-html", "build-js", "build-css"]);
 gulp.task("build-html", BuildHtml);
 gulp.task("build-js", BuildJs);
@@ -76,7 +73,6 @@ function BuildCss()
         .pipe(gulp.dest(out))
         .pipe(livereload());
 }
-
 
 gulp.task("watch", function()
 {
