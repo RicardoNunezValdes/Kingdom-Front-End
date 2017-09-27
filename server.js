@@ -1,7 +1,7 @@
 var express = require("express");
 var morgan = require("morgan");
-var browserSync = require("browser-sync");
 var config = require("./src/conf/config");
+
 var app = express();
 
 InitializeApp();
@@ -19,12 +19,7 @@ function ConfigureExpress()
 {
     // Configure express as static file server
     app.use(express.static("dist"));
-
-    // Configure express as static file server
-    app.use("/static", express.static("static"));
-
-    // Also configure it so node modules are available
-    app.use("/scripts", express.static("node_modules"));
+    app.use("/libs", express.static("libs"));
 
     // Add fav icon to express routing
     app.use("/favicon.ico", express.static("favicon.ico"));

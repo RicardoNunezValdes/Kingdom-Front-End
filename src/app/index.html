@@ -1,70 +1,45 @@
 <!DOCTYPE html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="MainApp">
+<html ng-app="KingdomApp">
 
 <head>
     <!-- META -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- Optimize mobile viewport -->
 
     <title>Kingdom POS</title>
 
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <!-- animation CSS -->
-    <link href="/static/css/animate.css" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/static/css/style.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- lumx -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lumx/1.6.0/lumx.css" integrity="sha256-xRNFflbcTI7dPZOT3gfMljeREqHvpSBUsKWwT0nyThE=" crossorigin="anonymous" /> -->
+
+    <link rel="stylesheet" href="/libs/lumx/lumx.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+
     <script>
         document.write("<link rel=\"stylesheet\" href=\"/css/app.css?v=" + Date.now() + "\">");
     </script>
-    <!-- load bootstrap -->
 
-    <!-- SPELLS -->
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> load jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-    <script src="/scripts/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Velocity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" integrity="sha256-/IeNFU9g1Tnj9pOKq3jGgIU2/kiKS+t1Q7pwym7mpoA=" crossorigin="anonymous"></script>
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js" integrity="sha256-Nfc6cMygZ4KL6eCnEri0iQjhvESQY3xivXAVj5XNbic=" crossorigin="anonymous"></script>
+    <!-- Angular Ui Router -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js" integrity="sha256-FMocp8pp1WruAK6GtjNDtuGAALCt/dCsVtw7oSjvPX0=" crossorigin="anonymous"></script>
+    <!-- Lumx -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lumx/1.6.0/lumx.min.js" integrity="sha256-hBoF5znzUdkvHfhhrPWm3kYJRC3Ov7NrhdwHRowNQb8=" crossorigin="anonymous"></script>
 </head>
 
 <body ng-controller="MainCtrl" class="fix-sidebar">
-    <div class="preloader" style="display: none;">
-        <div class="cssload-speeding-wheel"></div>
-    </div>
-    <!-- <a ui-sref="welcome">Inicio</a>
-    <a ui-sref="sales.banks">Bancos</a>
-    <a ui-sref="sales.products">Productos</a>
-    <ui-view></ui-view> -->
     <ui-view></ui-view>
     <script>
         document.write("<script type=\"text/javascript\" src=\"/js/app.js?v=" + Date.now() + "\"><\/script>");
     </script>
-
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="/static/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-
-    <!--slimscroll JavaScript -->
-    <script src="/static/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="/static/js/waves.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="/static/js/custom.js"></script>
-    <!--Style Switcher -->
-    <script src="/static/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-
-    <script src="/static/js/plugins/AdminLTE/app.min.js"></script>
 </body>
 
 </html>
