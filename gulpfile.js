@@ -79,4 +79,5 @@ gulp.task("watch", function()
     livereload.listen();
     gulp.watch(folder.src + "/**/*.html", ["build-html"]);
     gulp.watch(folder.src + "/**/*.js", ["build-js"]);
+    gulp.watch(folder.static + "/**/*.css", ["build-css"]);
 });

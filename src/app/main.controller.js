@@ -3,7 +3,7 @@
     "use strict";
 
     angular
-        .module("MainApp")
+        .module("KingdomApp")
         .controller("MainCtrl", ["$scope", MainController]);
 
     function MainController($scope)

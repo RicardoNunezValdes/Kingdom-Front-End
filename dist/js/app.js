@@ -2,6 +2,88 @@
 {
     "use strict";
 
+    angular.module("Booking", [])
+        .config(["$stateProvider", BookingRouting])
+
+    function BookingRouting($stateProvider)
+    {
+        var booking = {
+            name: "app.booking",
+            url: "/booking",
+            templateUrl: "/views/booking/booking.html",
+            controller: "BookingCtrl",
+        };
+
+        $stateProvider.state(booking);
+    }
+})();
+(function()
+{
+    "use strict";
+
+    angular
+        .module("Booking")
+        .controller("BookingCtrl", ["$scope", BookingCtrl])
+
+    function BookingCtrl($scope)
+    {}
+})();
+(function()
+{
+    "use strict";
+
+    angular.module("Dashboard", [])
+        .config(["$stateProvider", "$urlRouterProvider", Dashboardouting])
+
+    function Dashboardouting($stateProvider, $urlRouterProvider)
+    {
+        var dashboard = {
+            name: "app.dashboard",
+            url: "/dashboard",
+            templateUrl: "/views/dashboard/dashboard.html",
+            controller: "DashboardCtrl",
+        };
+
+        $stateProvider.state(dashboard);
+
+        // In any unusual case, navigate dashboard
+        $urlRouterProvider.otherwise("/app/dashboard");
+        $urlRouterProvider.when("/app", "/app/dashboard");
+    }
+})();
+(function()
+{
+    "use strict";
+
+    angular
+        .module("Dashboard")
+        .controller("DashboardCtrl", ["$scope", DashboardCtrl])
+
+    function DashboardCtrl($scope)
+    {}
+})();
+(function()
+{
+    "use strict";
+
+    angular.module("LayoutApp", [])
+        .config(["$stateProvider", "$urlRouterProvider", LayoutAppRouting])
+
+    function LayoutAppRouting($stateProvider, $urlRouterProvider)
+    {
+        var layout = {
+            name: "app",
+            url: "/app",
+            templateUrl: "/views/layout/layout.html"
+        };
+
+        $stateProvider.state(layout);
+    }
+})();
+(function()
+{
+    "use strict";
+
     angular
         .module("Routing", ["ui.router"])
         // .config(["$stateProvider", BaseStatesConfigurator])
@@ -36,7 +118,7 @@
     "use strict";
 
     angular
-        .module("AppPlugins", ["Routing"]);
+        .module("AppPlugins", ["lumx", "Routing"]);
 })();
 (function()
 {
@@ -232,36 +314,15 @@
 {
     "use strict";
 
-    angular.module("WelcomeApp", [])
-        .config(["$stateProvider", "$urlRouterProvider", WelcomeRouting])
-
-    function WelcomeRouting($stateProvider, $urlRouterProvider)
-    {
-        var welcome = {
-            name: "welcome",
-            url: "/welcome",
-            templateUrl: "/views/welcome/welcome.html"
-        };
-
-        $stateProvider.state(welcome);
-
-        // In any unusual case, navigate home
-        $urlRouterProvider.otherwise("welcome");
-    }
+    angular
+        .module("KingdomApp", ["AppPlugins", "LayoutApp", "SalesApp", "Booking", "Dashboard"]);
 })();
 (function()
 {
     "use strict";
 
     angular
-        .module("MainApp", ["AppPlugins", "WelcomeApp", "SalesApp"]);
-})();
-(function()
-{
-    "use strict";
-
-    angular
-        .module("MainApp")
+        .module("KingdomApp")
         .controller("MainCtrl", ["$scope", MainController]);
 
     function MainController($scope)

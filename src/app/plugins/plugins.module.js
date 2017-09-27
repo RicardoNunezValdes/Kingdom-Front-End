@@ -3,5 +3,5 @@
     "use strict";
 
     angular
-        .module("AppPlugins", ["Routing"]);
+        .module("AppPlugins", ["lumx", "Routing"]);
 })();
