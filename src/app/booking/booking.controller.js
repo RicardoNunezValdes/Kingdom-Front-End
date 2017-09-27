@@ -4,7 +4,7 @@
 
     angular
         .module("Booking")
-        .controller("Booking.BookingCtrl", ["$scope", BookingCtrl])
+        .controller("BookingCtrl", ["$scope", BookingCtrl])
 
     function BookingCtrl($scope)
     {}

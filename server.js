@@ -19,7 +19,7 @@ function ConfigureExpress()
 {
     // Configure express as static file server
     app.use(express.static("dist"));
-    app.use("/libs", express.static("libs"));
+    app.use("/static", express.static("static"));
 
     // Add fav icon to express routing
     app.use("/favicon.ico", express.static("favicon.ico"));

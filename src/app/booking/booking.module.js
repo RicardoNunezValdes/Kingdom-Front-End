@@ -11,7 +11,7 @@
             name: "app.booking",
             url: "/booking",
             templateUrl: "/views/booking/booking.html",
-            controller: "Booking.BookingCtrl",
+            controller: "BookingCtrl",
         };
 
         $stateProvider.state(booking);

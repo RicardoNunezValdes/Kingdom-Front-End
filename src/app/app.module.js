@@ -3,5 +3,5 @@
     "use strict";
 
     angular
-        .module("KingdomApp", ["AppPlugins", "LayoutApp", "SalesApp", "Booking"]);
+        .module("KingdomApp", ["AppPlugins", "LayoutApp", "SalesApp", "Booking", "Dashboard"]);
 })();
