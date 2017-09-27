@@ -10,7 +10,7 @@
         var booking = {
             name: "app.booking",
             url: "/booking",
-            templateUrl: "/views/booking/booking.html",
+            templateUrl: "/dist/views/booking/booking.html",
             controller: "BookingCtrl",
         };
 

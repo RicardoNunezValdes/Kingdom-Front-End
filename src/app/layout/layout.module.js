@@ -10,7 +10,7 @@
         var layout = {
             name: "app",
             url: "/app",
-            templateUrl: "/views/layout/layout.html"
+            templateUrl: "/dist/views/layout/layout.html"
         };
 
         $stateProvider.state(layout);

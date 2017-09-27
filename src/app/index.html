@@ -10,13 +10,14 @@
     <!-- Optimize mobile viewport -->
 
     <title>Kingdom POS</title>
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png">
 
     <!-- lumx -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lumx/1.6.0/lumx.css" integrity="sha256-xRNFflbcTI7dPZOT3gfMljeREqHvpSBUsKWwT0nyThE=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
 
     <script>
-        document.write("<link rel=\"stylesheet\" href=\"/css/app.css?v=" + Date.now() + "\">");
+        document.write("<link rel=\"stylesheet\" href=\"/dist/css/app.css?v=" + Date.now() + "\">");
     </script>
 
     <!-- JQuery -->
@@ -33,11 +34,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lumx/1.6.0/lumx.min.js" integrity="sha256-hBoF5znzUdkvHfhhrPWm3kYJRC3Ov7NrhdwHRowNQb8=" crossorigin="anonymous"></script>
 </head>
 
-<body ng-controller="MainCtrl" class="fix-sidebar">
+<body ng-controller="MainCtrl">
     <ui-view></ui-view>
-    <script>
+    <!-- <script>
         document.write("<script type=\"text/javascript\" src=\"/js/app.js?v=" + Date.now() + "\"><\/script>");
-    </script>
+    </script> -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
 </body>
 
 </html>

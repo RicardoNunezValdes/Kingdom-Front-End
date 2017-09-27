@@ -17,6 +17,10 @@
         });
 
         $urlMatcherFactoryProvider.strictMode(false);
+
+        // In any unusual case, navigate dashboard
+        $urlRouterProvider.otherwise("/app/dashboard");
+        $urlRouterProvider.when("/app", "/app/dashboard");
     }
 
     function BaseStatesConfigurator($stateProvider)

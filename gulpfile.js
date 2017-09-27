@@ -9,6 +9,8 @@ var angularOrder = require("gulp-angular-order");
 var config = require("./src/conf/config");
 var livereload = require("gulp-livereload");
 var del = require("del");
+var inject = require("gulp-inject");
+var angularFileSort = require("gulp-angular-filesort");
 
 // folders
 folder = {
@@ -17,29 +19,33 @@ folder = {
     static: "src/static"
 };
 
-gulp.task("default", ["clean-dist", "watch"], () => gulp.start("build"));
-gulp.task("build", ["build-html", "build-js", "build-css"]);
-gulp.task("build-html", BuildHtml);
+gulp.task("default", ["clean-dist"], () => gulp.start("build"));
+gulp.task("build", ["watch", "build-js", "build-css"], () => gulp.start("build-html"));
+gulp.task("build-html", ["build-views"], () => gulp.start("inject-scripts"));
+gulp.task("build-views", BuildHtml);
 gulp.task("build-js", BuildJs);
 gulp.task("build-css", BuildCss);
 gulp.task("clean-dist", () => del(["dist/"]));
+gulp.task("watch", WatchFiles);
+gulp.task("inject-scripts", InjectScripts);
 
 function BuildJs()
 {
     var orderConfiguration = {
         types: ["module", "model", "service", "controller", "directive", "filter", "routes", "config"]
     };
-    var destFileName = "app.js";
+    // var destFileName = "app.js";
+    var destFileName = "app" + Date.now() + ".js";
     var srcFilesPattern = folder.src + "/**/*.js";
     var destination = folder.dist + "js/";
 
     var jsbuild = gulp.src(srcFilesPattern)
         .pipe(newer(destination))
         .pipe(angularOrder(orderConfiguration))
-        .pipe(concat(destFileName));
 
     if (config.minifyFiles)
-        jsbuild = jsbuild.pipe(stripdebug())
+        jsbuild = jsbuild.pipe(concat(destFileName))
+        .pipe(stripdebug())
         .pipe(uglify());
 
     return jsbuild.pipe(gulp.dest(destination))
@@ -54,8 +60,8 @@ function BuildHtml()
     var htmlBuild = gulp.src(srcFilesPattern)
         .pipe(newer(out));
 
-    if (config.minifyFiles)
-        htmlBuild = htmlBuild.pipe(htmlclean());
+    // if (config.minifyFiles)
+    //     htmlBuild = htmlBuild.pipe(htmlclean());
 
     return htmlBuild.pipe(gulp.dest(out))
         .pipe(livereload());
@@ -74,10 +80,22 @@ function BuildCss()
         .pipe(livereload());
 }
 
-gulp.task("watch", function()
+function InjectScripts()
+{
+    var target = gulp.src(folder.dist + "/views/index.html");
+    // It"s not necessary to read the files (will speed up things), we"re only after their paths:
+    var sources = gulp.src([folder.dist + "js/**/*.js"])
+        .pipe(angularFileSort());
+
+    return target.pipe(inject(sources))
+        .pipe(gulp.dest(folder.dist + "/views"));
+}
+
+function WatchFiles()
 {
     livereload.listen();
+
     gulp.watch(folder.src + "/**/*.html", ["build-html"]);
     gulp.watch(folder.src + "/**/*.js", ["build-js"]);
     gulp.watch(folder.static + "/**/*.css", ["build-css"]);
-});
+}
