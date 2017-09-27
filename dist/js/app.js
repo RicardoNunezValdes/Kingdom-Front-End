@@ -33,9 +33,9 @@
     "use strict";
 
     angular.module("Dashboard", [])
-        .config(["$stateProvider", Dashboardouting])
+        .config(["$stateProvider", "$urlRouterProvider", Dashboardouting])
 
-    function Dashboardouting($stateProvider)
+    function Dashboardouting($stateProvider, $urlRouterProvider)
     {
         var dashboard = {
             name: "app.dashboard",
@@ -45,6 +45,10 @@
         };
 
         $stateProvider.state(dashboard);
+
+        // In any unusual case, navigate dashboard
+        $urlRouterProvider.otherwise("/app/dashboard");
+        $urlRouterProvider.when("/app", "/app/dashboard");
     }
 })();
 (function()
@@ -74,9 +78,6 @@
         };
 
         $stateProvider.state(layout);
-
-        // In any unusual case, navigate home
-        $urlRouterProvider.otherwise("app");
     }
 })();
 (function()

@@ -14,8 +14,5 @@
         };
 
         $stateProvider.state(layout);
-
-        // In any unusual case, navigate home
-        $urlRouterProvider.otherwise("app");
     }
 })();
